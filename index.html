@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yuqing Yang — Urban Spatial Analytics</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="scroll-progress"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- ══ NAV ══════════════════════════════════════ -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      Yuqing <span>Yang</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ HERO ══════════════════════════════════════ -->
+  <section id="hero">
+    <canvas id="map-canvas" aria-hidden="true"></canvas>
+    <div class="hero-vignette" aria-hidden="true"></div>
+
+    <div class="hero-content">
+
+      <!-- Left: text -->
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <span class="hero-coord">39.9526° N, 75.1652° W · Philadelphia</span>
+          <span class="hero-dot"></span>
+          <span class="hero-badge">Open to opportunities · 2026</span>
+        </div>
+
+        <h1 class="hero-name">
+          <span class="name-first">Yuqing</span>
+          <span class="name-last">Yang</span>
+        </h1>
+
+        <div class="hero-subtitle-row">
+          <div class="hero-accent-bar"></div>
+          <span class="hero-subtitle">MUSA · Weitzman School · UPenn · GPA 3.9</span>
+        </div>
+
+        <p class="hero-desc">
+          Urban spatial analyst combining GIS, machine learning, and policy thinking
+          to build data tools that help cities move smarter and grow more equitably.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View My Work →</a>
+          <a href="resume.pdf" class="btn btn-ghost" target="_blank">Download CV</a>
+        </div>
+      </div>
+
+      <!-- Right: photo -->
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-frame">
+
+          <!--
+            ═══════════════════════════════════════════
+            HOW TO ADD YOUR PHOTO:
+            1. Place your photo file (e.g. photo.jpg) in
+               the same folder as this index.html
+            2. Delete the <div class="hero-photo-placeholder">
+               block below entirely
+            3. Uncomment the <img> line below and update
+               the src to your filename
+
+            <img src="photo.jpg" alt="Yuqing Yang" />
+            ═══════════════════════════════════════════
+          -->
+
+          <div class="hero-photo-placeholder">
+            <div class="placeholder-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(92,39,254,0.7)" stroke-width="1.5">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              </svg>
+            </div>
+            <span class="placeholder-text">Add your photo here<br>see HTML comment above</span>
+          </div>
+
+        </div>
+        <div class="hero-photo-badge">✦ MUSA · Penn 2026</div>
+      </div>
+
+    </div><!-- /hero-content -->
+
+    <span class="hero-map-label" aria-hidden="true">Philadelphia road network · Canvas</span>
+  </section>
+
+  <!-- ══ SKILLS ════════════════════════════════════ -->
+  <section id="skills">
+    <div class="section-wrap">
+
+      <div class="section-header fade-in">
+        <span class="section-num">01 / Skills</span>
+        <h2 class="section-title">Technical Toolkit</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="skills-grid fade-in">
+
+        <!-- Row 1 -->
+        <div class="skill-card">
+          <div class="skill-icon">🐍</div>
+          <div class="skill-name">Python</div>
+          <div class="skill-tags">
+            <span class="tag">GeoPandas</span>
+            <span class="tag">pandas</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">xarray</span>
+            <span class="tag">statsmodels</span>
+            <span class="tag">matplotlib</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">📊</div>
+          <div class="skill-name">R</div>
+          <div class="skill-tags">
+            <span class="tag">tidyverse</span>
+            <span class="tag">ggplot2</span>
+            <span class="tag">sf</span>
+            <span class="tag">dplyr</span>
+            <span class="tag">tidymodels</span>
+            <span class="tag">spdep</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🌐</div>
+          <div class="skill-name">Web &amp; Mapping</div>
+          <div class="skill-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Leaflet</span>
+            <span class="tag">Mapbox</span>
+            <span class="tag">Chart.js</span>
+            <span class="tag">turf.js</span>
+            <span class="tag">D3.js</span>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="skill-card">
+          <div class="skill-icon">🗺</div>
+          <div class="skill-name">GIS &amp; Spatial DB</div>
+          <div class="skill-tags">
+            <span class="tag">ArcGIS</span>
+            <span class="tag">QGIS</span>
+            <span class="tag">PostGIS</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">OpenStreetMap</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🤖</div>
+          <div class="skill-name">Machine Learning</div>
+          <div class="skill-tags">
+            <span class="tag">Random Forest</span>
+            <span class="tag">XGBoost</span>
+            <span class="tag">OLS Regression</span>
+            <span class="tag">Cross-validation</span>
+            <span class="tag">ANOVA</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🛰️</div>
+          <div class="skill-name">Remote Sensing</div>
+          <div class="skill-tags">
+            <span class="tag">Google Earth Engine</span>
+            <span class="tag">GDAL</span>
+            <span class="tag">Rasterio</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">Sentinel-2</span>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="skill-card">
+          <div class="skill-icon">📦</div>
+          <div class="skill-name">Data Engineering</div>
+          <div class="skill-tags">
+            <span class="tag">SQL</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">Jupyter</span>
+            <span class="tag">Excel</span>
+            <span class="tag">ETL</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🏙</div>
+          <div class="skill-name">Design Tools</div>
+          <div class="skill-tags">
+            <span class="tag">AutoCAD</span>
+            <span class="tag">InDesign</span>
+            <span class="tag">Rhino</span>
+            <span class="tag">Illustrator</span>
+            <span class="tag">SketchUp</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🔧</div>
+          <div class="skill-name">Dev &amp; Collaboration</div>
+          <div class="skill-tags">
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">Linux</span>
+            <span class="tag">R Markdown</span>
+            <span class="tag">LaTeX</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROJECTS ══════════════════════════════════ -->
+  <section id="projects">
+    <div class="section-wrap">
+
+      <div class="section-header fade-in">
+        <span class="section-num">02 / Projects</span>
+        <h2 class="section-title">Selected Work</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="projects-grid fade-in">
+
+        <!-- Project 1: Road Safety -->
+        <div class="project-card" data-project-id="road-safety">
+          <div class="project-thumb">
+            <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- grid -->
+              <line x1="0" y1="37"  x2="400" y2="37"  stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <line x1="0" y1="75"  x2="400" y2="75"  stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <line x1="0" y1="113" x2="400" y2="113" stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <line x1="100" y1="0" x2="100" y2="150" stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <line x1="200" y1="0" x2="200" y2="150" stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <line x1="300" y1="0" x2="300" y2="150" stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <!-- road corridor -->
+              <rect x="0" y="60" width="400" height="30" fill="rgba(92,39,254,0.06)"/>
+              <line x1="0" y1="75" x2="400" y2="75" stroke="rgba(92,39,254,0.4)" stroke-width="2.5"/>
+              <!-- accident heat (orange) -->
+              <circle cx="100" cy="75" r="22" fill="rgba(255,101,0,0.18)"/>
+              <circle cx="100" cy="75" r="12" fill="rgba(255,101,0,0.28)"/>
+              <circle cx="100" cy="75" r="5"  fill="rgba(255,101,0,0.9)"/>
+              <circle cx="245" cy="75" r="18" fill="rgba(255,101,0,0.14)"/>
+              <circle cx="245" cy="75" r="9"  fill="rgba(255,101,0,0.24)"/>
+              <circle cx="245" cy="75" r="4"  fill="rgba(255,101,0,0.85)"/>
+              <circle cx="340" cy="75" r="12" fill="rgba(255,184,0,0.2)"/>
+              <circle cx="340" cy="75" r="5"  fill="rgba(255,184,0,0.7)"/>
+            </svg>
+            <div class="thumb-label">Philadelphia · Vision Zero</div>
+          </div>
+          <div class="project-body">
+            <div class="project-type">MUSA Practicum · Ongoing 2026</div>
+            <div class="project-title">Off-Peak Roadway Safety Analysis</div>
+            <p class="project-desc">Quantifying correlation between arterial road capacity and severe off-peak accidents using R (sf, tidymodels), directly supporting Philadelphia OTIS Vision Zero strategies. Built a web-based decision support system for planners to simulate "Road Diet" interventions.</p>
+            <div class="project-stack">
+              <span class="tag">R</span>
+              <span class="tag">sf</span>
+              <span class="tag">tidymodels</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">City of Philadelphia</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Housing Price Model -->
+        <div class="project-card" data-project-id="housing-price">
+          <div class="project-thumb">
+            <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- choropleth -->
+              <rect x="0"   y="0"   width="80" height="75"  fill="rgba(92,39,254,0.06)"  stroke="rgba(92,39,254,0.12)" stroke-width="0.5"/>
+              <rect x="80"  y="0"   width="80" height="75"  fill="rgba(92,39,254,0.20)"  stroke="rgba(92,39,254,0.12)" stroke-width="0.5"/>
+              <rect x="160" y="0"   width="80" height="75"  fill="rgba(92,39,254,0.32)"  stroke="rgba(92,39,254,0.12)" stroke-width="0.5"/>
+              <rect x="240" y="0"   width="80" height="75"  fill="rgba(255,101,0,0.25)"  stroke="rgba(92,39,254,0.12)" stroke-width="0.5"/>
+              <rect x="320" y="0"   width="80" height="75"  fill="rgba(255,101,0,0.12)"  stroke="rgba(92,39,254,0.12)" stroke-width="0.5"/>
+              <rect x="0"   y="75"  width="80" height="75"  fill="rgba(92,39,254,0.14)"  stroke="rgba(92,39,254,0.12)" stroke-width="0.5"/>
+              <rect x="80"  y="75"  width="80" height="75"  fill="rgba(255,101,0,0.18)"  stroke="rgba(92,39,254,0.12)" stroke-width="0.5"/>
+              <rect x="160" y="75"  width="80" height="75"  fill="rgba(92,39,254,0.28)"  stroke="rgba(92,39,254,0.12)" stroke-width="0.5"/>
+              <rect x="240" y="75"  width="80" height="75"  fill="rgba(92,39,254,0.08)"  stroke="rgba(92,39,254,0.12)" stroke-width="0.5"/>
+              <rect x="320" y="75"  width="80" height="75"  fill="rgba(255,101,0,0.30)"  stroke="rgba(92,39,254,0.12)" stroke-width="0.5"/>
+              <!-- legend -->
+              <defs>
+                <linearGradient id="lgd2" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%"   stop-color="rgba(248,245,255,1)"/>
+                  <stop offset="50%"  stop-color="rgba(92,39,254,0.6)"/>
+                  <stop offset="100%" stop-color="rgba(255,101,0,0.8)"/>
+                </linearGradient>
+              </defs>
+              <rect x="300" y="128" width="80" height="7" fill="url(#lgd2)" rx="2"/>
+              <text x="300" y="122" font-size="7" fill="rgba(61,48,96,0.6)" font-family="monospace">Low</text>
+              <text x="362" y="122" font-size="7" fill="rgba(61,48,96,0.6)" font-family="monospace">High</text>
+            </svg>
+            <div class="thumb-label">Philadelphia Housing</div>
+          </div>
+          <div class="project-body">
+            <div class="project-type">Predictive Modeling · Oct 2025</div>
+            <div class="project-title">Philadelphia Housing Sale Price Model</div>
+            <p class="project-desc">Predicted Philadelphia housing prices using multi-source data with 10-fold cross-validation. Key innovation: used linear regression to impute fair prices for non-market transactions, retaining 25% of data that would have been discarded.</p>
+            <div class="project-stack">
+              <span class="tag">R</span>
+              <span class="tag">Cross-validation</span>
+              <span class="tag">Feature Engineering</span>
+              <span class="tag">OLS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Yunnan App -->
+        <div class="project-card" data-project-id="yunnan-odyssey">
+          <div class="project-thumb">
+            <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- map base -->
+              <line x1="0" y1="37"  x2="400" y2="37"  stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <line x1="0" y1="75"  x2="400" y2="75"  stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <line x1="0" y1="113" x2="400" y2="113" stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <!-- route line -->
+              <polyline points="40,120 100,85 170,95 230,55 300,68 360,35" fill="none" stroke="rgba(92,39,254,0.5)" stroke-width="2.5" stroke-dasharray="6 3"/>
+              <!-- POIs -->
+              <circle cx="40"  cy="120" r="6"  fill="rgba(255,184,0,0.9)"/>
+              <circle cx="170" cy="95"  r="6"  fill="rgba(255,101,0,0.9)"/>
+              <circle cx="300" cy="68"  r="6"  fill="rgba(0,212,106,0.9)"/>
+              <circle cx="360" cy="35"  r="6"  fill="rgba(92,39,254,0.9)"/>
+              <!-- rings -->
+              <circle cx="40"  cy="120" r="14" fill="none" stroke="rgba(255,184,0,0.3)"    stroke-width="1.2"/>
+              <circle cx="170" cy="95"  r="14" fill="none" stroke="rgba(255,101,0,0.3)"    stroke-width="1.2"/>
+              <circle cx="300" cy="68"  r="14" fill="none" stroke="rgba(0,212,106,0.3)"    stroke-width="1.2"/>
+              <circle cx="360" cy="35"  r="14" fill="none" stroke="rgba(92,39,254,0.3)"    stroke-width="1.2"/>
+              <!-- labels -->
+              <text x="52" y="118" font-size="8" fill="rgba(61,48,96,0.6)" font-family="monospace">Lijiang</text>
+              <text x="182" y="93" font-size="8" fill="rgba(61,48,96,0.6)" font-family="monospace">Dali</text>
+              <text x="312" y="66" font-size="8" fill="rgba(61,48,96,0.6)" font-family="monospace">Shangri-La</text>
+            </svg>
+            <div class="thumb-label">Yunnan, China</div>
+          </div>
+          <div class="project-body">
+            <div class="project-type">Web Application · Aug–Dec 2025</div>
+            <div class="project-title">Yunnan Odyssey — Travel Planning App</div>
+            <p class="project-desc">Full-stack web app combining story-map narrative, dynamic Mapbox routing, drag-and-drop itinerary planning, and a social feed tied to geographic POIs. Built with Firebase for real-time user data management.</p>
+            <div class="project-stack">
+              <span class="tag">JavaScript</span>
+              <span class="tag">Leaflet</span>
+              <span class="tag">Mapbox API</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">Chart.js</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Transit Policy -->
+        <div class="project-card" data-project-id="transit-policy">
+          <div class="project-thumb">
+            <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- transit lines -->
+              <polyline points="10,120 80,90 150,100 220,60 290,72 370,30" fill="none" stroke="rgba(0,180,216,0.7)"  stroke-width="2.5"/>
+              <polyline points="10,88  80,108 150,68  220,80  290,42 370,55" fill="none" stroke="rgba(92,39,254,0.55)" stroke-width="2"/>
+              <polyline points="10,55  80,62  150,45  220,52  290,100 370,92" fill="none" stroke="rgba(255,101,0,0.5)" stroke-width="1.5"/>
+              <!-- stops -->
+              <circle cx="80"  cy="90"  r="5"  fill="none" stroke="rgba(0,180,216,0.8)"  stroke-width="1.5"/>
+              <circle cx="220" cy="60"  r="7"  fill="rgba(0,180,216,0.2)" stroke="rgba(0,180,216,0.8)"  stroke-width="1.5"/>
+              <circle cx="370" cy="30"  r="5"  fill="none" stroke="rgba(0,180,216,0.8)"  stroke-width="1.5"/>
+              <circle cx="150" cy="68"  r="4"  fill="none" stroke="rgba(92,39,254,0.8)"  stroke-width="1.5"/>
+              <circle cx="290" cy="42"  r="4"  fill="none" stroke="rgba(92,39,254,0.8)"  stroke-width="1.5"/>
+              <!-- isochrone rings -->
+              <circle cx="220" cy="60"  r="30" fill="rgba(0,180,216,0.06)" stroke="rgba(0,180,216,0.2)" stroke-width="0.8" stroke-dasharray="3 3"/>
+              <circle cx="220" cy="60"  r="55" fill="none" stroke="rgba(0,180,216,0.12)" stroke-width="0.8" stroke-dasharray="3 3"/>
+            </svg>
+            <div class="thumb-label">Transit Network</div>
+          </div>
+          <div class="project-body">
+            <div class="project-type">Policy Analytics · Aug–Dec 2025</div>
+            <div class="project-title">Transportation Policy Analytics Suite</div>
+            <p class="project-desc">Four policy analysis demos covering ITE Trip Generation reform, GTFS-based transit job accessibility, post-COVID traffic safety under Vision Zero, and congestion management evaluated through VMT and equity impacts.</p>
+            <div class="project-stack">
+              <span class="tag">R</span>
+              <span class="tag">GTFS</span>
+              <span class="tag">Isochrone</span>
+              <span class="tag">VMT</span>
+              <span class="tag">Equity Analysis</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5: Cloud Removal -->
+        <div class="project-card" data-project-id="cloud-removal">
+          <div class="project-thumb">
+            <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- grid -->
+              <line x1="0" y1="37"  x2="400" y2="37"  stroke="rgba(0,180,216,0.1)" stroke-width="0.7"/>
+              <line x1="0" y1="75"  x2="400" y2="75"  stroke="rgba(0,180,216,0.1)" stroke-width="0.7"/>
+              <line x1="0" y1="113" x2="400" y2="113" stroke="rgba(0,180,216,0.1)" stroke-width="0.7"/>
+              <line x1="133" y1="0" x2="133" y2="150" stroke="rgba(0,180,216,0.1)" stroke-width="0.7"/>
+              <line x1="267" y1="0" x2="267" y2="150" stroke="rgba(0,180,216,0.1)" stroke-width="0.7"/>
+              <!-- before: cloudy panel -->
+              <rect x="0" y="0" width="120" height="150" fill="rgba(0,180,216,0.04)"/>
+              <ellipse cx="55" cy="55" rx="52" ry="34" fill="rgba(215,228,248,0.78)"/>
+              <ellipse cx="90" cy="42" rx="36" ry="22" fill="rgba(225,236,252,0.72)"/>
+              <ellipse cx="30" cy="105" rx="26" ry="18" fill="rgba(210,225,246,0.6)"/>
+              <!-- model (center) -->
+              <circle cx="200" cy="75" r="24" fill="rgba(92,39,254,0.07)" stroke="rgba(92,39,254,0.28)" stroke-width="1.5"/>
+              <text x="200" y="79" font-size="8.5" fill="rgba(61,48,96,0.65)" font-family="monospace" text-anchor="middle">GAN</text>
+              <line x1="122" y1="75" x2="173" y2="75" stroke="rgba(92,39,254,0.35)" stroke-width="1.8" stroke-dasharray="5 3"/>
+              <line x1="227" y1="75" x2="272" y2="75" stroke="rgba(0,212,106,0.5)"  stroke-width="1.8" stroke-dasharray="5 3"/>
+              <!-- after: pixel grid (clear) -->
+              <rect x="280" y="8"  width="22" height="22" fill="rgba(0,212,106,0.55)" rx="1.5"/>
+              <rect x="306" y="8"  width="22" height="22" fill="rgba(0,180,216,0.4)"  rx="1.5"/>
+              <rect x="332" y="8"  width="22" height="22" fill="rgba(0,212,106,0.45)" rx="1.5"/>
+              <rect x="358" y="8"  width="22" height="22" fill="rgba(92,39,254,0.28)" rx="1.5"/>
+              <rect x="280" y="34" width="22" height="22" fill="rgba(0,180,216,0.32)" rx="1.5"/>
+              <rect x="306" y="34" width="22" height="22" fill="rgba(0,212,106,0.5)"  rx="1.5"/>
+              <rect x="332" y="34" width="22" height="22" fill="rgba(255,101,0,0.38)" rx="1.5"/>
+              <rect x="358" y="34" width="22" height="22" fill="rgba(0,212,106,0.42)" rx="1.5"/>
+              <rect x="280" y="60" width="22" height="22" fill="rgba(92,39,254,0.22)" rx="1.5"/>
+              <rect x="306" y="60" width="22" height="22" fill="rgba(0,212,106,0.48)" rx="1.5"/>
+              <rect x="332" y="60" width="22" height="22" fill="rgba(0,180,216,0.35)" rx="1.5"/>
+              <rect x="358" y="60" width="22" height="22" fill="rgba(0,212,106,0.3)"  rx="1.5"/>
+              <rect x="280" y="86" width="48" height="20" fill="rgba(92,39,254,0.18)" rx="1.5"/>
+              <rect x="332" y="86" width="48" height="20" fill="rgba(0,212,106,0.35)" rx="1.5"/>
+              <rect x="280" y="110" width="100" height="20" fill="rgba(0,180,216,0.18)" rx="1.5"/>
+            </svg>
+            <div class="thumb-label">Satellite Imagery · GAN</div>
+          </div>
+          <div class="project-body">
+            <div class="project-type">Remote Sensing Research · 2025</div>
+            <div class="project-title">Evaluating Generative Models for Cloud Removal in Satellite Imagery</div>
+            <p class="project-desc">Benchmarking GAN and diffusion-based deep learning architectures for reconstructing cloud-obscured pixels in multispectral Sentinel-2 imagery, evaluating model performance across varying cloud coverage thresholds and biome types.</p>
+            <div class="project-stack">
+              <span class="tag">Python</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">Google Earth Engine</span>
+              <span class="tag">GDAL</span>
+              <span class="tag">Sentinel-2</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6: Property Tax -->
+        <div class="project-card" data-project-id="property-tax">
+          <div class="project-thumb">
+            <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- grid -->
+              <line x1="0" y1="37"  x2="400" y2="37"  stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <line x1="0" y1="75"  x2="400" y2="75"  stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <line x1="0" y1="113" x2="400" y2="113" stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <line x1="160" y1="0" x2="160" y2="150" stroke="rgba(92,39,254,0.1)" stroke-width="0.7"/>
+              <!-- parcel choropleth left -->
+              <rect x="5"   y="5"   width="40" height="28" fill="rgba(92,39,254,0.08)"  stroke="rgba(92,39,254,0.18)" stroke-width="0.5" rx="1"/>
+              <rect x="48"  y="5"   width="40" height="28" fill="rgba(92,39,254,0.20)"  stroke="rgba(92,39,254,0.18)" stroke-width="0.5" rx="1"/>
+              <rect x="91"  y="5"   width="40" height="28" fill="rgba(255,101,0,0.28)"  stroke="rgba(92,39,254,0.18)" stroke-width="0.5" rx="1"/>
+              <rect x="134" y="5"   width="22" height="28" fill="rgba(92,39,254,0.14)"  stroke="rgba(92,39,254,0.18)" stroke-width="0.5" rx="1"/>
+              <rect x="5"   y="36"  width="83" height="35" fill="rgba(92,39,254,0.32)"  stroke="rgba(92,39,254,0.18)" stroke-width="0.5" rx="1"/>
+              <rect x="91"  y="36"  width="65" height="35" fill="rgba(255,101,0,0.22)"  stroke="rgba(92,39,254,0.18)" stroke-width="0.5" rx="1"/>
+              <rect x="5"   y="74"  width="40" height="35" fill="rgba(92,39,254,0.15)"  stroke="rgba(92,39,254,0.18)" stroke-width="0.5" rx="1"/>
+              <rect x="48"  y="74"  width="40" height="35" fill="rgba(255,101,0,0.18)"  stroke="rgba(92,39,254,0.18)" stroke-width="0.5" rx="1"/>
+              <rect x="91"  y="74"  width="65" height="35" fill="rgba(92,39,254,0.26)"  stroke="rgba(92,39,254,0.18)" stroke-width="0.5" rx="1"/>
+              <rect x="5"   y="112" width="151" height="32" fill="rgba(92,39,254,0.10)" stroke="rgba(92,39,254,0.18)" stroke-width="0.5" rx="1"/>
+              <!-- bar chart right -->
+              <rect x="172" y="5" width="222" height="140" fill="rgba(255,255,255,0.7)" stroke="rgba(255,101,0,0.2)" stroke-width="0.7" rx="2"/>
+              <!-- bars -->
+              <rect x="183" y="100" width="20" height="35" fill="rgba(92,39,254,0.32)" rx="1"/>
+              <rect x="208" y="80"  width="20" height="55" fill="rgba(92,39,254,0.48)" rx="1"/>
+              <rect x="233" y="58"  width="20" height="77" fill="rgba(255,101,0,0.52)" rx="1"/>
+              <rect x="258" y="70"  width="20" height="65" fill="rgba(92,39,254,0.38)" rx="1"/>
+              <rect x="283" y="45"  width="20" height="90" fill="rgba(255,101,0,0.42)" rx="1"/>
+              <rect x="308" y="85"  width="20" height="50" fill="rgba(92,39,254,0.28)" rx="1"/>
+              <rect x="333" y="62"  width="20" height="73" fill="rgba(92,39,254,0.44)" rx="1"/>
+              <rect x="358" y="72"  width="20" height="63" fill="rgba(255,101,0,0.35)" rx="1"/>
+              <line x1="178" y1="135" x2="385" y2="135" stroke="rgba(61,48,96,0.2)" stroke-width="0.8"/>
+              <!-- legend -->
+              <rect x="184" y="14" width="8" height="8" fill="rgba(92,39,254,0.42)" rx="1"/>
+              <text x="196" y="21" font-size="6.5" fill="rgba(61,48,96,0.55)" font-family="monospace">Tax Burden</text>
+              <rect x="184" y="27" width="8" height="8" fill="rgba(255,101,0,0.5)" rx="1"/>
+              <text x="196" y="34" font-size="6.5" fill="rgba(61,48,96,0.55)" font-family="monospace">Assessed Value</text>
+            </svg>
+            <div class="thumb-label">Philadelphia · OPA</div>
+          </div>
+          <div class="project-body">
+            <div class="project-type">Policy Platform · 2025–2026</div>
+            <div class="project-title">Philadelphia City Property Tax Platform</div>
+            <p class="project-desc">Interactive data platform making Philadelphia's property tax system legible to residents and policymakers. Surfaces assessment disparities, tax burden distributions, and equity patterns across neighborhoods using OPA records and sales data.</p>
+            <div class="project-stack">
+              <span class="tag">JavaScript</span>
+              <span class="tag">Python</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">PostGIS</span>
+              <span class="tag">Leaflet</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ═════════════════════════════════════ -->
+  <section id="about">
+    <div class="section-wrap">
+
+      <div class="section-header fade-in">
+        <span class="section-num">03 / About</span>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="about-grid fade-in">
+
+        <div class="about-text">
+          <p>
+            I'm a spatial analyst and urban planner pursuing my
+            <strong>Master of Urban Spatial Analytics (MUSA)</strong> at the University of Pennsylvania's
+            Weitzman School of Design (GPA 3.9/4.0), expected May 2026.
+            Before Penn, I earned my Bachelor of Engineering in Urban and Rural Planning
+            from <strong>Shenzhen University</strong> in 2025.
+          </p>
+          <blockquote class="about-pull">
+            Cities are the most complex datasets ever built — I want to help decode them.
+          </blockquote>
+          <p>
+            My work bridges quantitative analysis and spatial storytelling. I'm especially
+            interested in <strong>traffic safety, housing equity, and transit accessibility</strong>
+            — and building tools that make these issues legible to planners and policymakers.
+          </p>
+          <p>
+            I've collaborated with the City of Philadelphia's Office of Transportation and
+            Infrastructure Systems (OTIS) on Vision Zero research, interned as an
+            <strong>Assistant Urban Analyst</strong> at Shenzhen's Geospatial Information Center,
+            and published research at the 2024 Annual National Planning Conference.
+          </p>
+
+          <div class="awards-list">
+            <div class="award-item">
+              <div class="award-dot"></div>
+              <span>Nomination Award · 2024 WUPENiCity International Competition on Urban Sustainability</span>
+            </div>
+            <div class="award-item">
+              <div class="award-dot"></div>
+              <span>Excellent Award · National College Student Rural Planning Scheme Competition (2024)</span>
+            </div>
+            <div class="award-item">
+              <div class="award-dot"></div>
+              <span>Second &amp; Third Prize + Excellent Student Leader Award · Shenzhen University (2020–2023)</span>
+            </div>
+          </div>
+
+          <br>
+          <a href="resume.pdf" class="btn btn-ghost" target="_blank">Download Full Resume →</a>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat-box">
+            <span class="stat-num">3.9</span>
+            <span class="stat-label">GPA at Penn</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">6+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">2</span>
+            <span class="stat-label">Languages</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">2026</span>
+            <span class="stat-label">Graduation</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ════════════════════════════════════ -->
+  <section id="contact">
+    <div class="section-wrap">
+
+      <div class="section-header fade-in">
+        <span class="section-num">04 / Contact</span>
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="contact-inner fade-in">
+
+        <div>
+          <h3 class="contact-heading">
+            Let's work<br><span>together</span>
+          </h3>
+          <p class="contact-sub">
+            Open to internships, research collaborations, and full-time roles
+            in urban analytics, transportation planning, or spatial data science.
+            Based in Philadelphia — open to relocation.
+          </p>
+          <a href="mailto:yangit1212@outlook.com" class="btn btn-primary">
+            Send an Email →
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <a href="mailto:yangit1212@outlook.com" class="contact-email-link">
+            yangit1212@outlook.com
+          </a>
+          <div style="font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-bottom:1rem;letter-spacing:0.06em;">
+            +1 (267) 854-6234
+          </div>
+          <div class="contact-row">
+
+            <a href="https://github.com/demiyang12" class="social-link" target="_blank">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              github.com/demiyang12
+            </a>
+
+            <a href="https://www.linkedin.com/in/yuqing-yang1212/" class="social-link" target="_blank">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              linkedin.com/in/yuqing-yang1212
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════ -->
+  <footer>
+    <span>© <span id="year"></span> Yuqing Yang</span>
+    <span>MUSA · Weitzman School · University of Pennsylvania</span>
+  </footer>
+
+  <!-- ══ PROJECT MODAL ════════════════════════════ -->
+  <div id="project-modal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+      <div class="modal-thumb" id="modal-thumb"></div>
+      <div class="modal-content">
+        <div class="modal-type"  id="modal-type"></div>
+        <h2  class="modal-title" id="modal-title"></h2>
+        <div class="modal-divider"></div>
+        <div class="modal-section-label">Overview</div>
+        <p   class="modal-desc"  id="modal-desc"></p>
+        <div class="modal-section-label">Core Highlights</div>
+        <ul  class="modal-highlights" id="modal-highlights"></ul>
+        <div class="modal-section-label">My Takeaway</div>
+        <blockquote class="modal-takeaway" id="modal-takeaway"></blockquote>
+        <div class="modal-footer">
+          <div class="modal-stack-wrap" id="modal-stack"></div>
+          <a href="#" class="btn btn-primary" id="modal-link" target="_blank">View Project →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
