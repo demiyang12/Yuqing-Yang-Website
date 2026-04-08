@@ -467,12 +467,17 @@ section { position: relative; z-index: 1; }
 .tag {
   font-family: var(--mono);
   font-size: 10px;
-  padding: 3px 9px;
-  border-radius: 100px;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 5px;
   background: var(--violet-bg);
   color: var(--violet);
   letter-spacing: 0.04em;
   border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* ============================================
@@ -623,7 +628,34 @@ section { position: relative; z-index: 1; }
   flex: 1;
 }
 
-.project-stack { display: flex; flex-wrap: wrap; gap: 4px; }
+.project-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.75rem;
+}
+
+.project-stack { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; }
+
+.project-github {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 1px solid var(--border);
+  transition: color 0.18s, border-color 0.18s, background 0.18s;
+}
+
+.project-github:hover {
+  color: var(--violet);
+  border-color: var(--violet);
+  background: var(--violet-bg);
+}
 
 /* ============================================
    ABOUT
@@ -1059,7 +1091,43 @@ footer {
   flex-wrap: wrap;
 }
 
-.modal-stack-wrap { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; }
+.modal-meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
+}
+
+.modal-stack-wrap { display: flex; flex-wrap: wrap; gap: 4px; }
+
+.modal-meta-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.modal-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn-disabled { opacity: 0.42; pointer-events: none; }
+
+.modal-github-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--ink-mid);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: color 0.18s, border-color 0.18s, background 0.18s;
+}
+
+.modal-github-btn:hover {
+  color: var(--violet);
+  border-color: var(--violet);
+  background: var(--violet-bg);
+}
 
 /* ============================================
    SCROLL PROGRESS BAR

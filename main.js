@@ -551,86 +551,108 @@ const projectData = {
   'road-safety': {
     type: 'MUSA Practicum · Ongoing 2026',
     title: 'Off-Peak Roadway Safety Analysis',
-    description: 'Quantifying the correlation between arterial road capacity and severe off-peak accidents in Philadelphia using R (sf, tidymodels), directly supporting the City\'s OTIS Vision Zero strategies. Built a web-based decision support system for planners to simulate "Road Diet" interventions in real time.',
+    description: 'Congestion may cause fender benders, but excess road capacity may be causing catastrophic crashes. Built for Philadelphia\'s OTIS Office of Multimodal Planning, this practicum models the percentage of vehicles exceeding the speed limit as a continuous proxy for KSI (killed or serious injury) risk using a Random Forest, then wraps the predictions in a JavaScript scenario tool that lets planners simulate the safety effect of street-level interventions on unobserved segments.',
     highlights: [
-      'Analyzed multi-year crash data from the City of Philadelphia to identify arterial corridors with disproportionate off-peak severity rates.',
-      'Developed a tidymodels pipeline with spatial cross-validation to predict crash likelihood based on road geometry, lane count, and land-use context.',
-      'Built an interactive JavaScript decision-support tool allowing planners to simulate "Road Diet" scenarios and visualize projected safety improvements.',
-      'Collaborated with Philadelphia OTIS staff to align model outputs with the Vision Zero 2030 action plan and real-world implementation constraints.'
+      'Dependent variable selection: raw crash counts are stochastic and difficult to forecast reliably; the percentage of vehicles exceeding the speed limit is a continuous, well-distributed outcome strongly correlated with KSI risk and more amenable to predictive modeling.',
+      'Feature engineering across five conceptual groups: spatiotemporal and traffic dynamics capture when and under what flow conditions speeding is most likely; roadway geometry and spine assess how physical road dimensions encourage or restrict speed; built environment and right-of-way measure how street complexity and visual friction slow drivers; controls and enforcement identify actionable deterrents; and a safety baseline links predicted speeding rates to historical crash outcomes. Each group required a different data source and spatial join strategy to assemble.',
+      'Random Forest via tidymodels with spatial cross-validation. RF is well-suited here because the relationships between road characteristics and speeding behavior are unlikely to be linear or additive: a wide road matters differently at 2am than at 8am, and the effect of a bike lane depends on whether there is also on-street parking. RF captures these interactions without requiring them to be specified in advance, and handles the mix of continuous, categorical, and binary predictors naturally.',
+      'Scenario app: a JavaScript dashboard lets OTIS planners select any street segment, toggle street-level interventions such as adding traffic calming, changing lane configuration, or adjusting signal controls, and see the model\'s estimated change in high-speed driving frequency in real time.'
     ],
-    takeaway: 'Working directly with city planners taught me that the most technically elegant model is only as valuable as its legibility to decision-makers — designing for communication is as important as designing for accuracy.',
-    stack: ['R', 'sf', 'tidymodels', 'JavaScript', 'City of Philadelphia'],
-    link: '#'
+    takeaway: 'The most consequential methodological choice was picking the right dependent variable. Crash counts looked like the obvious target, but their sparsity and randomness made them nearly unforecastable at the segment level. Switching to the percentage of vehicles exceeding the speed limit gave the model a continuous, stable signal to learn from, and a metric planners could actually act on.',
+    stack: ['R', 'Random Forest', 'tidymodels', 'sf', 'OSM', 'JavaScript', 'Philadelphia OTIS'],
+    github: 'https://github.com/upenn/otis_off_peak_roadway_safety',
+    links: [
+      { label: 'Progress Deck',  url: 'https://drive.google.com/file/d/19jhZjauJeGWOSpwnBjltguL49ZT3ycLd/view?usp=sharing' },
+      { label: 'Final Report',   url: '#' },
+      { label: 'Web App',        url: '#' },
+    ]
   },
   'housing-price': {
     type: 'Predictive Modeling · Oct 2025',
     title: 'Philadelphia Housing Sale Price Model',
     description: 'A regression model predicting 2023–2024 Philadelphia residential sale prices (R² = 0.84, RMSE $124K) using OPA parcel records, census demographics, and spatial amenity features. Two key methodological choices set this model apart: imputing non-market transactions rather than discarding them, and treating missingness itself as a predictive signal.',
     highlights: [
-      'Imputing non-market prices via OLS: after removing outliers (intra-family transfers, near-zero sales), sale price and OPA assessed market value show a strong linear relationship among arm\'s-length transactions. A simple OLS model trained on clean data was used to predict a fair-market <code>sale_price_predicted</code> for each non-market record — converting otherwise unusable observations into valid training data.',
+      'Imputing non-market prices via OLS: after removing outliers (intra-family transfers, near-zero sales), sale price and OPA assessed market value show a strong linear relationship among arm\'s-length transactions. A simple OLS model trained on clean data was used to predict a fair-market <code>sale_price_predicted</code> for each non-market record, converting otherwise unusable observations into valid training data.',
       'Turning missing values into a feature: rather than dropping rows with missing <code>central_air</code> data, a dummy variable <code>central_air_missing</code> was created (1 = missing, 0 = present). This lets the model capture whether missingness itself is systematically associated with price, without losing any observations.',
       'Top predictors: living area (0.74 price elasticity), zip code, central air (45.8% premium), and interior condition; spatial features include K-NN hospital distance and buffer-based crime density.',
       'Spatial residual mapping reveals systematic under-prediction in low-income neighborhoods, surfacing where assessed values diverge most from market reality.'
     ],
-    takeaway: '<p>When facing large-scale outliers, deletion is not the only — or even the best — solution. Rather than simply filtering out "noisy" data, we can use logical inference to extract its latent value: a linear relationship found among clean transactions becomes the imputation engine that rescues the rest.</p><p>Complexity doesn\'t always equal quality. Even a foundational OLS regression can achieve high precision and deep interpretability through meticulous variable treatment — log transformations for skewed prices, squared terms for non-linear house age effects, and spatial weighting to account for geographic correlation.</p><p>What if we had simply deleted that 25% of non-market data — records concentrated in low-income neighborhoods and family transfers? The model would develop severe systemic bias, losing its grasp on the low-end housing market and causing the algorithm to fail precisely where it\'s needed most. Vulnerable populations would become invisible in data-driven policy and valuation.</p>',
+    takeaway: '<p>When facing large-scale outliers, deletion is not the only solution, and often not the best one either. Rather than simply filtering out "noisy" data, we can use logical inference to extract its latent value: a linear relationship found among clean transactions becomes the imputation engine that rescues the rest.</p><p>Complexity doesn\'t always equal quality. Even a foundational OLS regression can achieve high precision and deep interpretability through meticulous variable treatment: log transformations for skewed prices, squared terms for non-linear house age effects, and spatial weighting for geographic correlation.</p><p>What if we had simply deleted that 25% of non-market data (typically concentrated in low-income neighborhoods and family transfers)? The model would develop severe systemic bias, losing its grasp on the low-end housing market and causing the algorithm to fail precisely where it\'s needed most. Vulnerable populations would become invisible in data-driven policy and valuation.</p>',
     stack: ['R', 'OLS', 'Weighted Regression', 'Spatial Features', 'sf'],
-    link: 'https://demiyang12.github.io/Public-Policy-Analytics-Portfolio/midterm/appendix/Yuqing_Yang_appendix.html'
+    github: 'https://github.com/MUSA-5080-Fall-2025/portfolio-setup-demiyang12/tree/main/midterm',
+    links: [
+      { label: 'View Analysis',       url: 'https://demiyang12.github.io/Public-Policy-Analytics-Portfolio/midterm/appendix/Yuqing_Yang_appendix.html' },
+      { label: 'Presentation Slides', url: 'https://demiyang12.github.io/Public-Policy-Analytics-Portfolio/midterm/slides/Yuqing_Yang_Presentation.html#/title-slide' },
+    ]
   },
   'yunnan-odyssey': {
     type: 'Web Application · Aug–Dec 2025',
     title: 'Yunnan Odyssey — Travel Planning App',
-    description: 'A concept travel-planning web experience for Yunnan, China, structured as a 3-step journey: Inspiration → Intelligence → Action. The core thesis: social platforms are great at emotional inspiration but bad at logistics; planning tools are great at logistics but lack emotional signals. Yunnan Odyssey fuses both in one product.',
+    description: 'A multi-page travel planning app built in vanilla JavaScript. Three linked views share state through localStorage and Firebase: a Leaflet storymap with procedurally generated fractal paths along the Tea Horse Road; a GeoJSON-driven exploration dashboard with month-based seasonal filtering, category search, and Yunstagram (a Firestore-backed social feed that anchors every post to a specific POI); and an itinerary planner with SortableJS drag-and-drop ordering, real-time budget tracking, Chart.js elevation profiles, and turn-by-turn routes via the Mapbox Directions API.',
     highlights: [
-      'Step 1 — Inspiration: A Tea Horse Road storymap using Leaflet + fractal path generation to set the narrative tone and introduce key destinations.',
-      'Step 2 — Intelligence: An exploration dashboard with month-based seasonal highlighting, climate charts, category filters, and "Yunstagram" — a location-pinned social feed (Firebase) where every post belongs to a specific POI.',
-      'Step 3 — Action: A day-by-day itinerary planner with wishlist-driven POI selection, elevation profiles, budget tracking, and auto-generated per-day routes via Mapbox Directions API.',
+      'Step 1: Inspiration. A Tea Horse Road storymap using Leaflet with fractal path generation to set the narrative tone and introduce key destinations.',
+      'Step 2: Intelligence. An exploration dashboard with month-based seasonal highlighting, climate charts, category filters, and Yunstagram, a location-pinned social feed (Firebase) where every post belongs to a specific POI.',
+      'Step 3: Action. A day-by-day itinerary planner with wishlist-driven POI selection, elevation profiles, budget tracking, and auto-generated per-day routes via Mapbox Directions API.',
       'POI dataset sourced from OpenStreetMap; Firebase Firestore powers wishlist sync and social post interactions (likes, comments, image upload).'
     ],
-    takeaway: 'Designing "Yunstagram" — where every social post is geographically anchored — made me think hard about the relationship between emotional storytelling and spatial data. A place isn\'t just coordinates; it\'s the accumulation of experiences people associate with it.',
+    takeaway: 'Designing Yunstagram, with every social post geographically anchored to a specific place, made me think hard about the relationship between emotional storytelling and spatial data. A place isn\'t just coordinates; it\'s the accumulation of experiences people associate with it.',
     stack: ['JavaScript', 'Leaflet', 'Mapbox API', 'Firebase', 'Chart.js', 'SortableJS'],
-    link: 'https://demiyang12.github.io/JavaScript-Final-Project/'
+    github: 'https://github.com/demiyang12/JavaScript-Final-Project',
+    links: [
+      { label: 'Live App', url: 'https://demiyang12.github.io/JavaScript-Final-Project/' },
+    ]
   },
   'transit-policy': {
     type: 'Policy Analytics · Aug–Dec 2025',
     title: 'Transportation Policy Analytics Suite',
-    description: 'A four-part policy analysis series covering ITE Trip Generation reform, GTFS-based transit job accessibility, post-COVID traffic safety under Vision Zero, and congestion management evaluated through VMT and equity lenses. Each module produces a standalone report with interactive visualizations.',
+    description: 'Four policy memos written for real planning audiences, each tackling a distinct failure mode in how American cities measure and manage transportation. The suite argues a consistent thread: conventional metrics like ITE trip generation rates and Level of Service grades are not neutral technical tools; they embed car-centric assumptions that actively shape, and often distort, planning decisions.',
     highlights: [
-      'Critiqued ITE Trip Generation rates using local data to demonstrate their systematic overestimation of vehicle traffic for urban infill projects.',
-      'Built GTFS-based isochrone maps to quantify job accessibility by transit, identifying service gaps in low-income corridors.',
-      'Analyzed post-COVID crash severity trends using regression discontinuity to isolate the effect of reduced enforcement on Vision Zero outcomes.',
-      'Evaluated HOT lane and congestion pricing scenarios using VMT modeling with distributional equity analysis across income quartiles.'
+      'ITE Trip Generation critique (Upper Darby, PA): ITE rates derived from isolated suburban sites systematically overestimate vehicle trips by 25%+ in transit-rich urban contexts, feeding a "predict and provide" cycle that forces excess parking and road widening. Proposed alternatives include smart-growth regression adjustments, accessibility-based analysis measuring jobs reachable by all modes, and VMT/mode-share impact reporting in place of LOS grades.',
+      'Transit job accessibility framework (Camden, NJ): designed a Segmented Cumulative Opportunity measure counting low-to-moderate wage jobs reachable within a 45-minute transit threshold. Distinguishes "origin accessibility" for new housing from "destination accessibility" for new commercial sites using GTFS isochrones and reverse-isochrone analysis to test whether developments serve Camden\'s transit-dependent workforce or only highway commuters.',
+      'Post-COVID traffic safety memo (PennDOT): Pennsylvania recorded 1,230 roadway deaths in 2021, a five-year high, driven by excess-capacity road design enabling high-speed driving on emptier roads. Proposed four pillars: automated speed enforcement (citing Roosevelt Blvd pilot\'s 95% speeding reduction), Complete Streets re-engineering, replacing LOS with safety and accessibility metrics, and using LBS and LEHD data for real-time predictive risk modeling.',
+      'License-plate driving restriction analysis (Philadelphia): recommended against the proposed one-day-per-week ban. Evidence from Mexico City\'s Hoy No Circula shows households respond by buying older secondary vehicles, increasing total emissions and VMT. The policy is also regressive, disproportionately burdening low-income workers who cannot afford compliant vehicles or transit alternatives. Recommended congestion pricing and transit frequency investment instead.'
     ],
-    takeaway: 'The most surprising finding was how widely ITE trip generation standards overshoot reality for urban contexts — it crystallized for me how outdated technical standards can quietly perpetuate car-centric development patterns even when planners want to do otherwise.',
-    stack: ['R', 'GTFS', 'Isochrone Analysis', 'VMT Modeling', 'Equity Analysis'],
-    link: '#'
+    takeaway: 'The through-line across all four memos is that technical standards are not politically neutral. ITE rates, LOS grades, and license-plate bans all appear objective but embed choices about whose time and mobility get prioritized. Recognizing that was more important than any single analytical finding.',
+    stack: ['R', 'GTFS', 'Isochrone Analysis', 'Policy Memo', 'Equity Analysis'],
+    github: 'https://github.com/demiyang12/Introduction-to-Transportation-Planning',
+    links: [
+      { label: 'View Report', url: 'https://drive.google.com/file/d/1dKWOMMt9kv2yv2wmRIxU5VdXSMyAorJn/view?usp=sharing' },
+    ]
   },
   'cloud-removal': {
-    type: 'Remote Sensing Research · 2025',
+    type: 'Remote Sensing Research · Ongoing 2026',
     title: 'Evaluating Generative Models for Cloud Removal in Satellite Imagery',
-    description: 'This project evaluates the performance of generative deep learning models — including GANs and diffusion-based approaches — for reconstructing cloud-obscured pixels in multispectral satellite imagery. The study compares models across multiple cloud coverage thresholds and biome types, with particular focus on tropical regions where persistent cloud cover limits temporal data availability.',
+    description: 'Optical remote sensing in southern China is severely limited by persistent cloud cover—annual cloud frequency exceeds 80% in some areas, creating "data islands" that make time-series monitoring of crop growth, illegal logging, and disaster response impossible. This project (MUSA 650, with Chuan Zou and Christine Cui) benchmarks three approaches for reconstructing cloud-obscured Sentinel-2 imagery: a multi-temporal compositing baseline, a GAN-based model, and a diffusion-based inpainting model. Rather than asking whether complete images can be generated, the study focuses on performance boundaries—quantifying how reconstruction reliability decays as cloud coverage rises from 5% to 70%, and identifying the thresholds at which each method begins to produce physically implausible results.',
     highlights: [
-      'Benchmarked GAN, U-Net, and diffusion model architectures on paired cloudy/cloud-free Sentinel-2 image datasets.',
-      'Evaluated reconstruction quality using SSIM, PSNR, and spectral fidelity metrics across RGB and near-infrared bands.',
-      'Analyzed model performance degradation as a function of cloud coverage percentage and spatial distribution.',
-      'Developed a reproducible evaluation pipeline using Google Earth Engine and Python (PyTorch, GDAL, Rasterio).'
+      'Dataset: 2,000 cloud-free Sentinel-2 images (10m resolution) from low-cloud northern China (Beijing area) used as ground truth, with synthetic cloud masks applied at five coverage levels: 5%, 10%, 30%, 50%, and 70%.',
+      'Baseline: multi-temporal compositing—reconstructing missing pixels by selecting cloud-free observations across time, without any deep learning. Effective when cloud-free frames exist, but fails under persistent cover.',
+      'Model A (GAN): learns a conditional mapping from cloudy to cloud-free images using a generator–discriminator adversarial framework, capturing spatial texture features (farmland geometry, urban grid, vegetation continuity).',
+      'Model B (Diffusion): DDPM-based inpainting with mask-guided sampling (RePaint, Lugmayr et al. 2022), progressively reconstructing occluded regions conditioned on visible context—better leveraging spatial dependencies under heavy cloud cover.',
+      'Evaluation: PSNR and SSIM for pixel-level accuracy and structural similarity; NDVI error as a domain-specific metric for vegetation area reliability. Results plotted as cloud coverage–error curves to reveal each method\'s performance degradation profile.',
+      'Key failure modes examined: hallucination under high coverage (visually plausible but physically inconsistent outputs) and inability to predict post-sudden-event states such as flooding.'
     ],
-    takeaway: 'Working at the intersection of computer vision and remote sensing revealed the fundamental tension between pixel-level reconstruction accuracy and semantic coherence — a model can look right while being physically implausible.',
-    stack: ['Python', 'PyTorch', 'Google Earth Engine', 'GDAL', 'Rasterio', 'Sentinel-2'],
-    link: '#'
+    takeaway: 'The core insight is that generative models for cloud removal should not be judged on whether they produce realistic-looking images—they almost always do. The harder question is at what cloud coverage threshold the model begins hallucinating: synthesizing structure that never existed on the ground. Making that boundary legible is what makes a model safe to use in decisions about crop subsidies or disaster response.',
+    stack: ['Python', 'PyTorch', 'Sentinel-2', 'GAN', 'Diffusion Models (DDPM)', 'PSNR / SSIM / NDVI'],
+    links: [
+      { label: 'View Report', url: '#' },
+    ]
   },
   'property-tax': {
-    type: 'Policy Platform · 2025–2026',
-    title: 'Philadelphia City Property Tax Platform',
-    description: 'An interactive data platform for exploring Philadelphia\'s property tax system, designed to make assessment disparities and tax burden distributions legible to residents and policymakers. Integrates OPA assessment records, sales data, and demographic layers to surface equity patterns across neighborhoods.',
+    type: 'Cloud Infrastructure · Ongoing 2026',
+    title: 'Philadelphia CAMA Pipeline',
+    description: 'A cloud-native Computer-Assisted Mass Appraisal (CAMA) system for Philadelphia, built as a multi-team class project at Weitzman MUSA. The pipeline ingests public parcel and assessment data from OpenDataPhilly, runs a predictive valuation model, and serves outputs to an interactive assessment review dashboard, all orchestrated on Google Cloud.',
     highlights: [
-      'Built an interactive choropleth dashboard visualizing effective tax rates and assessment accuracy ratios (sale price / assessed value) at the parcel level.',
-      'Developed a neighborhood-level equity analysis quantifying assessment regressivity — the tendency for lower-value homes to be assessed at higher fractions of market value.',
-      'Designed a "what-if" scenario tool allowing users to simulate the impact of reassessment policies on household tax burden by income decile.',
-      'Integrated with Philadelphia\'s open data portal via automated ETL pipeline to keep assessments and sales records current.'
+      'End-to-end data pipeline on Google Cloud: raw data lands in Cloud Storage, passes through extract/prepare/load Cloud Functions into three BigQuery datasets (source, core, derived), and prediction jobs run on Cloud Run. Cloud Workflows ties the stages together; Cloud Scheduler automates recurring runs.',
+      'Predictive valuation model trained on Philadelphia Properties and Assessment History records, producing per-parcel assessed value predictions stored as derived BigQuery tables alongside current and historical assessment bins.',
+      'Vector map tile generation on Cloud Run feeds an interactive assessment review dashboard, allowing planners to inspect predicted vs. assessed values, flag anomalies, and visualize spatial patterns across neighborhoods.',
+      'Standardized naming conventions and IAM service account configuration across multiple teams, enabling parallel development of pipeline components without schema conflicts.'
     ],
-    takeaway: 'Discovering the degree of assessment regressivity in Philadelphia\'s tax system — where the least affluent homeowners often pay the highest effective rates — underscored how data transparency tools can be a form of civic advocacy.',
-    stack: ['JavaScript', 'Python', 'PostgreSQL', 'PostGIS', 'Leaflet', 'D3.js'],
-    link: '#'
+    takeaway: 'Building a mass appraisal pipeline taught me that the hardest problems are rarely modeling ones. Getting raw public data into a consistent, queryable schema across multiple contributors took longer than training the model, and the infrastructure decisions made early constrained every downstream choice.',
+    stack: ['Python', 'SQL', 'BigQuery', 'Google Cloud', 'Cloud Functions', 'JavaScript'],
+    github: 'https://github.com/Weitzman-MUSA-GeoCloud/s26-team4-cama',
+    links: [
+      { label: 'View Project', url: '#' },
+    ]
   }
 };
 
@@ -659,9 +681,19 @@ function openModal(id, cardEl) {
   const stack = document.getElementById('modal-stack');
   stack.innerHTML = data.stack.map(s => `<span class="tag">${s}</span>`).join('');
 
-  const link = document.getElementById('modal-link');
-  link.href = data.link;
-  link.textContent = data.link === '#' ? 'Link Coming Soon' : 'View Project →';
+  const linksEl = document.getElementById('modal-links');
+  linksEl.innerHTML = data.links.map(({ label, url }) => {
+    const isReal = url !== '#';
+    return `<a href="${url}" class="btn ${isReal ? 'btn-primary' : 'btn-ghost btn-disabled'}"${isReal ? ' target="_blank" rel="noopener"' : ''} ${isReal ? '' : 'tabindex="-1" aria-disabled="true"'}>${label} →</a>`;
+  }).join('');
+
+  const ghBtn = document.getElementById('modal-github');
+  if (data.github) {
+    ghBtn.href = data.github;
+    ghBtn.style.display = 'inline-flex';
+  } else {
+    ghBtn.style.display = 'none';
+  }
 
   modalOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
