@@ -562,9 +562,9 @@ const projectData = {
     stack: ['R', 'Random Forest', 'tidymodels', 'sf', 'OSM', 'JavaScript', 'Philadelphia OTIS'],
     github: 'https://github.com/upenn/otis_off_peak_roadway_safety',
     links: [
-      { label: 'Progress Deck',  url: 'https://drive.google.com/file/d/19jhZjauJeGWOSpwnBjltguL49ZT3ycLd/view?usp=sharing' },
-      { label: 'Final Report',   url: '#' },
-      { label: 'Web App',        url: '#' },
+      { label: 'Final Report',   url: 'https://chihyunkim.github.io/otis_off_peak_roadway_safety/PROJECT_WRITEUP.html' },
+      { label: 'Web App',        url: 'https://chihyunkim.github.io/otis_off_peak_roadway_safety/landing.html' },
+      { label: 'Progress Deck',  url: 'https://drive.google.com/file/d/1RXxkJQnALEV9FeCRBkmLIBc5X1Oqe_zI/view?usp=drive_link' },
     ]
   },
   'housing-price': {
@@ -604,19 +604,24 @@ const projectData = {
   },
   'transit-policy': {
     type: 'Policy Analytics · Aug–Dec 2025',
-    title: 'Transportation Policy Analytics Suite',
-    description: 'Four policy memos written for real planning audiences, each tackling a distinct failure mode in how American cities measure and manage transportation. The suite argues a consistent thread: conventional metrics like ITE trip generation rates and Level of Service grades are not neutral technical tools; they embed car-centric assumptions that actively shape, and often distort, planning decisions.',
+    title: 'Transportation Planning: Policy Analysis & Studio Project',
+    description: 'This work spans two complementary strands: a series of evidence-based policy memos addressing systemic failures in how American cities measure and manage transportation, and a studio project developing a comprehensive multimodal transportation plan for a real planning context. Together they demonstrate both analytical rigor and the ability to translate research into actionable planning recommendations.',
     highlights: [
-      'ITE Trip Generation critique (Upper Darby, PA): ITE rates derived from isolated suburban sites systematically overestimate vehicle trips by 25%+ in transit-rich urban contexts, feeding a "predict and provide" cycle that forces excess parking and road widening. Proposed alternatives include smart-growth regression adjustments, accessibility-based analysis measuring jobs reachable by all modes, and VMT/mode-share impact reporting in place of LOS grades.',
-      'Transit job accessibility framework (Camden, NJ): designed a Segmented Cumulative Opportunity measure counting low-to-moderate wage jobs reachable within a 45-minute transit threshold. Distinguishes "origin accessibility" for new housing from "destination accessibility" for new commercial sites using GTFS isochrones and reverse-isochrone analysis to test whether developments serve Camden\'s transit-dependent workforce or only highway commuters.',
-      'Post-COVID traffic safety memo (PennDOT): Pennsylvania recorded 1,230 roadway deaths in 2021, a five-year high, driven by excess-capacity road design enabling high-speed driving on emptier roads. Proposed four pillars: automated speed enforcement (citing Roosevelt Blvd pilot\'s 95% speeding reduction), Complete Streets re-engineering, replacing LOS with safety and accessibility metrics, and using LBS and LEHD data for real-time predictive risk modeling.',
-      'License-plate driving restriction analysis (Philadelphia): recommended against the proposed one-day-per-week ban. Evidence from Mexico City\'s Hoy No Circula shows households respond by buying older secondary vehicles, increasing total emissions and VMT. The policy is also regressive, disproportionately burdening low-income workers who cannot afford compliant vehicles or transit alternatives. Recommended congestion pricing and transit frequency investment instead.'
+      '— PART I: Policy Analytics Suite —',
+      'Four policy memos written for real planning audiences, each tackling a distinct failure mode in transportation planning. The through-line: conventional metrics like ITE trip generation rates and LOS grades are not neutral technical tools — they embed car-centric assumptions that distort planning decisions.',
+      'ITE Trip Generation critique (Upper Darby, PA): ITE rates derived from isolated suburban sites overestimate vehicle trips by 25%+ in transit-rich urban contexts, feeding a "predict and provide" cycle that forces excess parking and road widening. Proposed alternatives include smart-growth regression adjustments and VMT/mode-share reporting in place of LOS grades.',
+      'Transit job accessibility framework (Camden, NJ): designed a Segmented Cumulative Opportunity measure counting low-to-moderate wage jobs reachable within a 45-minute transit threshold, using GTFS isochrones and reverse-isochrone analysis.',
+      'Post-COVID traffic safety memo (PennDOT): Pennsylvania recorded 1,230 roadway deaths in 2021. Proposed four pillars: automated speed enforcement, Complete Streets re-engineering, replacing LOS with safety metrics, and LBS/LEHD-based predictive risk modeling.',
+      'License-plate restriction analysis (Philadelphia): recommended against the proposed ban. Evidence from Mexico City\'s Hoy No Circula shows households buy older secondary vehicles, increasing emissions and VMT. Recommended congestion pricing and transit investment instead.',
+      '— PART II: Transportation Studio Project —',
+      'A comprehensive multimodal transportation plan developed as a studio project, combining land use analysis, network design, and equity evaluation. The project culminated in a full planning report and a public presentation pitch, demonstrating how analytical findings translate into a coherent, stakeholder-ready planning proposal.'
     ],
-    takeaway: 'The through-line across all four memos is that technical standards are not politically neutral. ITE rates, LOS grades, and license-plate bans all appear objective but embed choices about whose time and mobility get prioritized. Recognizing that was more important than any single analytical finding.',
-    stack: ['R', 'GTFS', 'Isochrone Analysis', 'Policy Memo', 'Equity Analysis'],
+    takeaway: 'The through-line across both strands is that technical standards are not politically neutral. ITE rates, LOS grades, and license-plate bans all appear objective but embed choices about whose time and mobility get prioritized. And translating that critique into a real planning proposal — one that must be presented and defended — closes the loop between analysis and action.',
+    stack: ['R', 'GTFS', 'Isochrone Analysis', 'Policy Memo', 'Equity Analysis', 'Studio Planning'],
     github: 'https://github.com/demiyang12/Introduction-to-Transportation-Planning',
     links: [
-      { label: 'View Report', url: 'https://drive.google.com/file/d/1dKWOMMt9kv2yv2wmRIxU5VdXSMyAorJn/view?usp=sharing' },
+      { label: 'Policy Analysis Report', url: 'https://drive.google.com/file/d/16WAZ61vm6j9rePrbghKaL7owvWjdC5LE/view?usp=drive_link' },
+      { label: 'Studio Project Deck',    url: 'https://drive.google.com/file/d/11aNNh2XbjLn3kf12n6GbtT20WLDCipWv/view?usp=drive_link' },
     ]
   },
   'cloud-removal': {
@@ -651,7 +656,7 @@ const projectData = {
     stack: ['Python', 'SQL', 'BigQuery', 'Google Cloud', 'Cloud Functions', 'JavaScript'],
     github: 'https://github.com/Weitzman-MUSA-GeoCloud/s26-team4-cama',
     links: [
-      { label: 'View Project', url: '#' },
+      { label: 'View Project', url: 'https://weitzman-musa-geocloud.github.io/s26-team4-cama/' },
     ]
   }
 };
