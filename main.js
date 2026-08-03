@@ -149,24 +149,11 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
       }
     }
 
-    /* SZ district labels */
-    ctx.font = `300 9px 'DM Mono', monospace`;
-    ctx.fillStyle = C.labelSZ;
-    ctx.globalAlpha = 0.75;
-    [
-      { text: 'FUTIAN',  x: W * 0.06, y: H * 0.32 },
-      { text: 'NANSHAN', x: W * 0.03, y: H * 0.55 },
-      { text: 'SZ BAY',  x: W * 0.04, y: H * 0.80 },
-      { text: 'LONGHUA', x: W * 0.18, y: H * 0.16 },
-      { text: 'LUOHU',   x: W * 0.36, y: H * 0.26 },
-    ].forEach(l => ctx.fillText(l.text, l.x, l.y));
-    ctx.globalAlpha = 1;
-
-    /* SZ animated POIs */
+    /* SZ animated POIs (no labels) */
     const szPois = [
-      { x: W * 0.12, y: H * 0.38, label: 'Civic Ctr' },
-      { x: W * 0.26, y: H * 0.52, label: 'Futian CBD' },
-      { x: W * 0.38, y: H * 0.30, label: 'SZU' },
+      { x: W * 0.12, y: H * 0.38 },
+      { x: W * 0.26, y: H * 0.52 },
+      { x: W * 0.38, y: H * 0.30 },
     ];
     szPois.forEach((p, i) => {
       const pulse = Math.sin(t * 0.0015 + i * 1.8 + 10) * 0.5 + 0.5;
@@ -180,9 +167,6 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
       ctx.beginPath(); ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2); ctx.fill();
       ctx.fillStyle = '#fff'; ctx.globalAlpha = 0.8;
       ctx.beginPath(); ctx.arc(p.x, p.y, 1.3, 0, Math.PI * 2); ctx.fill();
-      ctx.font = `300 8px 'DM Mono', monospace`;
-      ctx.fillStyle = C.labelSZ; ctx.globalAlpha = 0.85;
-      ctx.fillText(p.label, p.x + 6, p.y + 3);
     });
     ctx.globalAlpha = 1;
 
@@ -288,25 +272,12 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
       ctx.stroke();
     }
 
-    /* Philly district labels */
-    ctx.font        = `300 9.5px 'DM Mono', monospace`;
-    ctx.fillStyle   = C.label;
-    ctx.globalAlpha = 0.8;
-    [
-      { text: 'OLD CITY',        x: W * 0.82, y: H * 0.22 },
-      { text: 'CENTER CITY',     x: W * 0.64, y: H * 0.50 },
-      { text: 'UNIVERSITY CITY', x: W * 0.50, y: H * 0.26 },
-      { text: 'SOUTH PHILLY',    x: W * 0.64, y: H * 0.76 },
-      { text: 'FISHTOWN',        x: W * 0.84, y: H * 0.14 },
-    ].forEach(l => ctx.fillText(l.text, l.x, l.y));
-    ctx.globalAlpha = 1;
-
-    /* Philly animated POIs */
+    /* Philly animated POIs (no labels) */
     const pois = [
-      { x: W * 0.52, y: H * 0.36, label: 'Penn' },
-      { x: W * 0.70, y: H * 0.56, label: 'City Hall' },
-      { x: W * 0.60, y: H * 0.20, label: 'Temple U' },
-      { x: W * 0.76, y: H * 0.42, label: 'OTIS' },
+      { x: W * 0.52, y: H * 0.36 },
+      { x: W * 0.70, y: H * 0.56 },
+      { x: W * 0.60, y: H * 0.20 },
+      { x: W * 0.76, y: H * 0.42 },
     ];
     pois.forEach((p, i) => {
       const pulse = Math.sin(t * 0.0015 + i * 1.3) * 0.5 + 0.5;
@@ -319,9 +290,6 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
       ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2); ctx.fill();
       ctx.fillStyle   = '#fff'; ctx.globalAlpha = 0.8;
       ctx.beginPath(); ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2); ctx.fill();
-      ctx.font        = `300 8.5px 'DM Mono', monospace`;
-      ctx.fillStyle   = C.label; ctx.globalAlpha = 0.9;
-      ctx.fillText(p.label, p.x + 7, p.y + 3);
     });
     ctx.globalAlpha = 1;
 
@@ -360,29 +328,9 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     ctx.fillRect(0, scanY - 35, W, 70);
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       SCALE BAR & NORTH ARROW
+       NORTH ARROW (no text labels)
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    const sbX = W - 115, sbY = H - 24, sbW = 72;
-    ctx.strokeStyle = C.label;
-    ctx.lineWidth   = 1;
-    ctx.globalAlpha = 0.45;
-    ctx.beginPath();
-    ctx.moveTo(sbX, sbY); ctx.lineTo(sbX + sbW, sbY);
-    ctx.moveTo(sbX, sbY - 5); ctx.lineTo(sbX, sbY + 3);
-    ctx.moveTo(sbX + sbW, sbY - 5); ctx.lineTo(sbX + sbW, sbY + 3);
-    ctx.stroke();
-    ctx.font      = '8.5px DM Mono, monospace';
-    ctx.fillStyle = C.label;
-    ctx.textAlign = 'center';
-    ctx.fillText('500 m', sbX + sbW / 2, sbY - 7);
-    ctx.textAlign = 'left';
-
     const nx = W - 30, ny = H - 56;
-    ctx.font      = '9px DM Mono, monospace';
-    ctx.fillStyle = C.label;
-    ctx.globalAlpha = 0.55;
-    ctx.textAlign = 'center';
-    ctx.fillText('N', nx, ny - 7);
     ctx.beginPath();
     ctx.moveTo(nx, ny); ctx.lineTo(nx - 4.5, ny + 13);
     ctx.lineTo(nx, ny + 9); ctx.lineTo(nx + 4.5, ny + 13);
@@ -390,7 +338,6 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     ctx.fillStyle   = 'rgba(92,39,254,0.85)';
     ctx.globalAlpha = 0.9;
     ctx.fill();
-    ctx.textAlign   = 'left';
     ctx.globalAlpha = 1;
   }
 
@@ -516,6 +463,8 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     'satellite':      () => drawDualBoundary(
                               'BEIJING', [ 92,  39, 254],
                               'YUNNAN',  [  0, 180, 100]),
+    'shenzhen-uav':   () => drawBoundary('SHENZHEN',    [255, 101,   0]),
+    'podcast':        () => drawBoundary('PHILADELPHIA', [  0, 180, 216]),
   };
 
   /* ── Attach hover listeners ── */
@@ -549,14 +498,14 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
    ============================================ */
 const projectData = {
   'road-safety': {
-    type: 'MUSA Practicum · Ongoing 2026',
+    type: 'MUSA Practicum · Jan–May 2026',
     title: 'Off-Peak Roadway Safety Analysis',
     description: 'Congestion may cause fender benders, but excess road capacity may be causing catastrophic crashes. Built for Philadelphia\'s OTIS Office of Multimodal Planning, this practicum models the percentage of vehicles exceeding the speed limit as a continuous proxy for KSI (killed or serious injury) risk using a Random Forest, then wraps the predictions in a JavaScript scenario tool that lets planners simulate the safety effect of street-level interventions on unobserved segments.',
     highlights: [
-      'Dependent variable selection: raw crash counts are stochastic and difficult to forecast reliably; the percentage of vehicles exceeding the speed limit is a continuous, well-distributed outcome strongly correlated with KSI risk and more amenable to predictive modeling.',
-      'Feature engineering across five conceptual groups: spatiotemporal and traffic dynamics capture when and under what flow conditions speeding is most likely; roadway geometry and spine assess how physical road dimensions encourage or restrict speed; built environment and right-of-way measure how street complexity and visual friction slow drivers; controls and enforcement identify actionable deterrents; and a safety baseline links predicted speeding rates to historical crash outcomes. Each group required a different data source and spatial join strategy to assemble.',
-      'Random Forest via tidymodels with spatial cross-validation. RF is well-suited here because the relationships between road characteristics and speeding behavior are unlikely to be linear or additive: a wide road matters differently at 2am than at 8am, and the effect of a bike lane depends on whether there is also on-street parking. RF captures these interactions without requiring them to be specified in advance, and handles the mix of continuous, categorical, and binary predictors naturally.',
-      'Scenario app: a JavaScript dashboard lets OTIS planners select any street segment, toggle street-level interventions such as adding traffic calming, changing lane configuration, or adjusting signal controls, and see the model\'s estimated change in high-speed driving frequency in real time.'
+      'End-to-end GIS data pipeline: integrated roadway geometry, speed sensor records, crash history, road-design attributes, transit network layers, and Google Earth imagery into a standardized street-segment dataset covering 9,049 segment-period observations for citywide analysis.',
+      'Dependent variable selection: raw crash counts are stochastic and difficult to forecast reliably at the segment level; the percentage of vehicles exceeding the speed limit is a continuous, well-distributed outcome strongly correlated with KSI risk and more amenable to predictive modeling.',
+      'Random Forest via tidymodels with spatial cross-validation: captures non-linear and interaction effects (e.g. a wide road at 2am behaves differently than at 8am) without requiring those interactions to be specified in advance. Handles the full mix of continuous, categorical, and binary predictors across five feature groups — spatiotemporal dynamics, roadway geometry, built environment, enforcement controls, and safety baseline.',
+      'Scenario tool: 24 roadway-intervention scenarios across four daily time periods translated into corridor maps and an interactive JavaScript dashboard, enabling OTIS planners to compare speeding-risk profiles and explore road-diet, bike-lane, and traffic-calming strategies on unobserved segments.'
     ],
     takeaway: 'The most consequential methodological choice was picking the right dependent variable. Crash counts looked like the obvious target, but their sparsity and randomness made them nearly unforecastable at the segment level. Switching to the percentage of vehicles exceeding the speed limit gave the model a continuous, stable signal to learn from, and a metric planners could actually act on.',
     stack: ['R', 'Random Forest', 'tidymodels', 'sf', 'OSM', 'JavaScript', 'Philadelphia OTIS'],
@@ -625,7 +574,7 @@ const projectData = {
     ]
   },
   'cloud-removal': {
-    type: 'Remote Sensing Research · Ongoing 2026',
+    type: 'Remote Sensing Research · Apr–May 2026',
     title: 'Evaluating Generative Models for Cloud Removal in Satellite Imagery',
     description: 'Optical remote sensing in southern China is severely limited by persistent cloud cover—annual cloud frequency exceeds 80% in some areas, creating "data islands" that make time-series monitoring of crop growth, illegal logging, and disaster response impossible. This project (MUSA 650, with Chuan Zou and Christine Cui) benchmarks three approaches for reconstructing cloud-obscured Sentinel-2 imagery: a multi-temporal compositing baseline, a GAN-based model, and a diffusion-based inpainting model. Rather than asking whether complete images can be generated, the study focuses on performance boundaries—quantifying how reconstruction reliability decays as cloud coverage rises from 5% to 70%, and identifying the thresholds at which each method begins to produce physically implausible results.',
     highlights: [
@@ -639,11 +588,11 @@ const projectData = {
     takeaway: 'The core insight is that generative models for cloud removal should not be judged on whether they produce realistic-looking images—they almost always do. The harder question is at what cloud coverage threshold the model begins hallucinating: synthesizing structure that never existed on the ground. Making that boundary legible is what makes a model safe to use in decisions about crop subsidies or disaster response.',
     stack: ['Python', 'PyTorch', 'Sentinel-2', 'GAN', 'Diffusion Models (DDPM)', 'PSNR / SSIM / NDVI'],
     links: [
-      { label: 'View Report', url: '#' },
+      { label: 'View Notebook', url: 'https://github.com/chuanzou/Geo-Evaluate/blob/main/assignments/final_project.ipynb' },
     ]
   },
   'property-tax': {
-    type: 'Cloud Infrastructure · Ongoing 2026',
+    type: 'Cloud Infrastructure · Apr–May 2026',
     title: 'Philadelphia CAMA Pipeline',
     description: 'A cloud-native Computer-Assisted Mass Appraisal (CAMA) system for Philadelphia, built as a multi-team class project at Weitzman MUSA. The pipeline ingests public parcel and assessment data from OpenDataPhilly, runs a predictive valuation model, and serves outputs to an interactive assessment review dashboard, all orchestrated on Google Cloud.',
     highlights: [
@@ -657,6 +606,40 @@ const projectData = {
     github: 'https://github.com/Weitzman-MUSA-GeoCloud/s26-team4-cama',
     links: [
       { label: 'View Project', url: 'https://weitzman-musa-geocloud.github.io/s26-team4-cama/' },
+    ]
+  },
+  'spatial-quo': {
+    type: 'Podcast · Urban Planning Media',
+    title: 'The Spatial Quo — Space is Never Neutral',
+    description: 'A podcast episode I co-produced and hosted exploring how space is never truly neutral. From shopping malls and public parks to snowy sidewalks, transit data, and the home, we examine how everyday spaces are often designed around a hidden "default user." Through conversations with Christine and Isabelle, the episode asks what it really means to belong in a space — is it enough to be allowed to enter, or does true belonging mean being able to stay, move, rest, and exist without needing to justify yourself?',
+    highlights: [
+      'Space is never neutral — it is often designed around a "default user." The episode opens by tracing this idea from urban planning theory to the lived experience of navigating everyday spaces.',
+      'Demi (00:01:28): malls, parks, and the difference between being welcomed as a consumer and belonging as a person. A space that welcomes women as consumers is not the same as a space that welcomes women as people.',
+      'Christine (00:05:57): snow-clearing priorities, sidewalks, and how the "default user" appears in routine urban planning decisions. Trip-chaining, care work, and the data gaps that systematically erase gendered mobility patterns from city design.',
+      'Isabelle (00:09:51): the home as another space shaped by hidden assumptions — who gets privacy, who keeps moving, and who has "a room of one\'s own." Domestic space and the unequal distribution of interruption.',
+      'Closing reflection (00:14:05): from streets to homes, the episode asks who these spaces were really designed for, and why noticing invisible patterns is the first step toward changing them.',
+      'A truly equal public space is not one where women are finally allowed to enter — it is one where they can stay, be alone, take up space, and exist without having to justify that existence.'
+    ],
+    takeaway: 'Making this episode changed how I walk through cities. I\'d spent years analyzing street networks as graphs and crash data as points — but the podcast forced me to think about the same streets as social spaces: who feels watched, who reroutes to avoid discomfort, who was simply never counted in the trip data. That gap between what the data captures and what the space feels like is exactly where planning needs to do better work.',
+    stack: ['Podcast Production', 'Urban Space', 'Gender & Planning', 'Public Space', 'Transit Data'],
+    links: [
+      { label: 'Listen to Episode', url: 'assets/podcast.mp3' },
+    ]
+  },
+  'wupen-uav': {
+    type: 'Urban Sustainability Research · Sept 2023 – Aug 2024',
+    title: 'UAV Last-Mile Delivery: Take-Off & Landing Suitability Analysis',
+    description: 'A spatial suitability study evaluating candidate locations for UAV take-off and landing points in Shenzhen\'s real-time delivery network, conducted at Shenzhen University in collaboration with Meituan Academy of Robotics. The project built a multi-criteria weighted overlay model to identify optimal UAV hub locations that balance delivery efficiency, airspace safety, and urban land-use constraints — and evaluated the sustainability implications for urban mobility. Received a Nomination Award at the 2024 WUPENiCity International Competition on Urban Sustainability Reports.',
+    highlights: [
+      'Multi-criteria suitability evaluation: constructed a weighted overlay model combining land-use compatibility (zoning and FAR constraints), pedestrian density, building-height obstruction buffers, commercial POI proximity, and Civil Aviation Administration airspace regulation zones to produce a continuous per-hex suitability score across the study area.',
+      'Collaboration with Meituan Academy of Robotics: real delivery demand data and operational flight-path constraints from Meituan\'s drone delivery program informed the service-radius parameters, weight limits, and no-fly zone assumptions used throughout the analysis.',
+      'Urban sustainability framing: evaluated UAV delivery\'s potential to reduce vehicle-miles traveled and last-mile carbon emissions in dense urban areas; assessed equity implications of service-area coverage relative to commercial district and residential population distribution.',
+      'Recognized at the 2024 WUPENiCity International Competition on Urban Sustainability Reports — a global competition co-organized by WUPENiCity evaluating urban sustainability research — with a Nomination Award for the study\'s methodological rigor and policy relevance.'
+    ],
+    takeaway: 'The hardest constraint wasn\'t the algorithm — it was reconciling data from completely different domains: airspace regulations, retail delivery demand, residential density, and building geometry. Each layer came with its own spatial resolution, temporal coverage, and institutional owner. Getting them to speak the same language before any analysis could begin was the real work.',
+    stack: ['ArcGIS Pro', 'Spatial Suitability Modeling', 'Multi-Criteria Evaluation', 'Weighted Overlay', 'Urban Sustainability'],
+    links: [
+      { label: 'View Competition Entry', url: 'http://wupen.org/competitions/115?type=work&entry=17362' },
     ]
   }
 };
@@ -678,8 +661,17 @@ function openModal(id, cardEl) {
   document.getElementById('modal-title').textContent = data.title;
   document.getElementById('modal-desc').textContent  = data.description;
 
+  /* Wrap HH:MM:SS timestamps as clickable seek buttons */
+  function wrapTimestamps(text) {
+    return text.replace(/\b(\d{2}:\d{2}:\d{2})\b/g, (ts) => {
+      const [h, m, s] = ts.split(':').map(Number);
+      const secs = h * 3600 + m * 60 + s;
+      return `<button class="ts-btn" onclick="window._seekPodcast(${secs})" title="Jump to ${ts}">${ts}</button>`;
+    });
+  }
+
   const hl = document.getElementById('modal-highlights');
-  hl.innerHTML = data.highlights.map(h => `<li><span>${h}</span></li>`).join('');
+  hl.innerHTML = data.highlights.map(h => `<li><span>${wrapTimestamps(h)}</span></li>`).join('');
 
   document.getElementById('modal-takeaway').innerHTML = data.takeaway;
 
@@ -688,9 +680,27 @@ function openModal(id, cardEl) {
 
   const linksEl = document.getElementById('modal-links');
   linksEl.innerHTML = data.links.map(({ label, url }) => {
+    if (url.endsWith('.mp3')) {
+      return `
+        <div class="modal-podcast-player" id="modal-podcast-player">
+          <audio id="modal-audio" src="${url}" preload="none"></audio>
+          <button class="podcast-play-btn" id="podcast-play-btn" onclick="window._togglePodcast()">▶ &nbsp;Play Episode</button>
+          <input type="range" class="podcast-scrubber" id="podcast-scrubber" value="0" min="0" step="0.5">
+        </div>`;
+    }
     const isReal = url !== '#';
     return `<a href="${url}" class="btn ${isReal ? 'btn-primary' : 'btn-ghost btn-disabled'}"${isReal ? ' target="_blank" rel="noopener"' : ''} ${isReal ? '' : 'tabindex="-1" aria-disabled="true"'}>${label} →</a>`;
   }).join('');
+
+  /* Wire up podcast scrubber & sync after DOM insertion */
+  requestAnimationFrame(() => {
+    const audio    = document.getElementById('modal-audio');
+    const scrubber = document.getElementById('podcast-scrubber');
+    if (!audio || !scrubber) return;
+    audio.addEventListener('loadedmetadata', () => { scrubber.max = audio.duration; });
+    audio.addEventListener('timeupdate', () => { scrubber.value = audio.currentTime; });
+    scrubber.addEventListener('input', () => { audio.currentTime = scrubber.value; });
+  });
 
   const ghBtn = document.getElementById('modal-github');
   if (data.github) {
@@ -705,9 +715,34 @@ function openModal(id, cardEl) {
 }
 
 function closeModal() {
+  const audio = document.getElementById('modal-audio');
+  if (audio) { audio.pause(); audio.currentTime = 0; }
   modalOverlay.classList.remove('open');
   document.body.style.overflow = '';
 }
+
+/* Podcast player controls (global so onclick= works) */
+window._togglePodcast = function () {
+  const audio = document.getElementById('modal-audio');
+  const btn   = document.getElementById('podcast-play-btn');
+  if (!audio) return;
+  if (audio.paused) {
+    audio.play();
+    btn.innerHTML = '⏸ &nbsp;Pause';
+  } else {
+    audio.pause();
+    btn.innerHTML = '▶ &nbsp;Play Episode';
+  }
+};
+
+window._seekPodcast = function (secs) {
+  const audio = document.getElementById('modal-audio');
+  const btn   = document.getElementById('podcast-play-btn');
+  if (!audio) return;
+  audio.currentTime = secs;
+  audio.play();
+  if (btn) btn.innerHTML = '⏸ &nbsp;Pause';
+};
 
 modalClose.addEventListener('click', closeModal);
 modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
