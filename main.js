@@ -365,7 +365,8 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
       const filter = btn.dataset.filter;
       cards.forEach(card => {
-        const match = filter === 'all' || card.dataset.category === filter;
+        const cats = (card.dataset.category || '').split(' ');
+      const match = filter === 'all' || cats.includes(filter);
         if (match) {
           card.classList.remove('hidden');
           card.style.animation = 'fadeUp 0.4s ease both';
@@ -641,6 +642,75 @@ const projectData = {
     links: [
       { label: 'View Competition Entry', url: 'http://wupen.org/competitions/115?type=work&entry=17362' },
     ]
+  },
+
+  'rural-planning': {
+    type: 'Rural Planning & Design · Aug 2023 – Jan 2024',
+    title: 'Skills to the Field — Learning Village Design',
+    description: 'A comprehensive rural planning and design project for Xiaohaochong Village, an industrial-edge settlement in the Pearl River Delta. Facing demographic hollowing, weakened local industries, and eroding cultural identity, the project proposes transforming the village into a "Learning Village" — a place that uses vocational and craft education as the engine of rural revitalization. The framework operates across four systems: talent attraction and cultivation, cultural programming, industrial integration, and community governance.',
+    highlights: [
+      'Diagnosis: Gongbian sits at the seam between factory zones and farmland, creating a dual-identity settlement where transient industrial workers and aging residents coexist without shared economic or social infrastructure.',
+      'Core concept: "Skills to the Field, Craft to a Livelihood" — the village becomes a hub where proximity to light industry is reframed as an asset, channeling industrial know-how back into craft-based, locally owned small enterprises.',
+      'Four-system framework: Human (talent pipelines from nearby colleges and technical schools), Culture (seasonal festivals, folk-craft workshops, and community memory archives), Production (upgraded agricultural supply chains and maker-space units integrated into existing courtyard fabric), and Governance (a village operations cooperative linking residents, entrepreneurs, and government).',
+      'Land use planning: land reclassified to support three distinct zones — ecological buffer, a revitalized residential and commercial core, and a light industrial-craft belt — with a phased seasonal activity calendar calibrated to annual labor flows.',
+      'Three key node designs developed at site scale: a civic square and folk-craft exhibition hall, a farmland experience trail with shared facilities, and an industrial technology workshop complex. Each node uses modular spatial units that adapt to the existing building grain.',
+      'Received the Excellent Award at the National College Student Rural Planning Scheme Competition (Aug 2023 – Jan 2024), developed in collaboration with Doumen Town Government, Zhuhai.'
+    ],
+    takeaway: 'Rural revitalization is not about importing urban forms into the countryside. The strongest design moves here worked with what the village already had — its proximity to industry, its seasonal labor rhythms, its courtyard typology — rather than against it.',
+    stack: ['ArcGIS', 'AutoCAD', 'SketchUp', 'Rhino', 'InDesign', 'Photoshop', 'Illustrator'],
+    links: [
+      { label: 'View Full Design Drawings', url: 'assets/rural planning.pdf' }
+    ]
+  },
+
+  'undergrad-capstone': {
+    type: 'Undergraduate Capstone · Urban Design · 2025',
+    title: 'Urban–Rural Food Chain & Carbon Circular Renewal — Luohu Border District Urban Design',
+    description: 'An urban design proposal for the Luohu port border zone between Shenzhen and Hong Kong, addressing the systemic carbon cost embedded in cross-border food supply chains. The project — argues that the Shenzhen–Hong Kong border is not merely a transit node but a site of structural ecological vulnerability: Hong Kong imports over 90% of its food, while Shenzhen\'s self-sufficiency rate falls below 30%. A single orange travels 18,000 km from Egypt to a Shenzhen supermarket shelf. The design proposes a three-phase, 30-year transformation of the border-adjacent land into a distributed urban–rural production and carbon exchange system.',
+    highlights: [
+      'Problem framing: cross-border food supply chains generate "hidden pollution" through long-haul cold-chain logistics, while existing border land use prioritizes trade and transit over food security or ecological function.',
+      'Three production systems designed in parallel: a fishery and aquaculture circular loop (reclaiming and retrofitting existing fish ponds), an agricultural production and processing belt (field-to-table cold chain compressed within walking distance), and a shared mobility ring connecting all zones without private vehicles.',
+      'Carbon exchange mechanism: a community carbon-credit system where residents earn points for low-carbon behavior (green transit, rooftop farming, clothing recycling) and redeem them for facility access and goods — connecting individual action to city-scale carbon accounting.',
+      'Phased construction plan: Phase 1 (10 years) — agricultural exhibition hall, fish pond restoration, coarse-processing facilities; Phase 2 (20 years) — shared mobility ring, residential infill; Phase 3 (30 years) — logistics corridor extension and regional carbon trading hub.',
+      'Spatial strategy organizes the site along three axes: a riverfront landscape spine, a public-space circulation loop, and an agricultural production gradient from intensive urban farming to open wetland. Key nodes include the Shenzhen–Hong Kong Modern Agriculture Exhibition Hall, a riverside dialogue stage, and a children\'s agri-park.',
+      'Awarded Outstanding Graduation Design by Shenzhen University (2025), recognizing the project\'s interdisciplinary ambition — bridging food systems, carbon policy, urban design, and cross-border governance in a single spatial proposal.'
+    ],
+    takeaway: 'The most interesting design constraint was the border itself — a line that creates two completely different regulatory environments 50 meters apart. Every system we designed had to work across that seam: the carbon credits, the food chain, the shared transport. The border stopped being an obstacle and became the conceptual engine of the project.',
+    stack: ['AutoCAD', 'Rhino', 'SketchUp', 'ArcGIS', 'InDesign', 'Photoshop', 'Illustrator'],
+    links: [
+      { label: 'View Full Design Drawings', url: 'assets/undergrad capstone.pdf' }
+    ]
+  },
+
+  'data-graphs': {
+    type: 'Exploratory Work · 2024–2026',
+    title: 'Data Visualization Gallery',
+    description: 'Charts, maps, and visual essays made outside of coursework — exploring transit demand, urban commuting, school access, great-circle routes, and climate patterns across Philadelphia, Boston, New York, the UK, and beyond. Each piece treats projection, color, and annotation as arguments, not decoration.',
+    highlights: [
+      'Philadelphia: Severe Speeding Spikes During Off-Peak Hours — off-peak windows see the highest proportions of vehicles exceeding 16–20+ mph over the speed limit (DVRPC data, 2022–2025)',
+      'Bike Share Demand Is Highly Predictable — Philadelphia Indego trip volume 24 hours ago strongly predicts current demand, confirming temporal autocorrelation as a forecasting signal',
+      'MBTA Passenger Miles 2015–2024 — pandemic collapse and still-incomplete recovery visualized across heavy rail, light rail, commuter rail, and bus',
+      'The Commuting Kingdoms of Philadelphia — census tracts colored by the most common commute mode, revealing drive-alone dominance outside the transit core',
+      'School-Access Priority Mapping — child density surfaces (ACS 2022) to identify underserved areas in North and Lower Northeast Philadelphia',
+      'North Polar View: Transpolar Routes Become Legible — polar azimuthal projection reveals Arctic shortcuts that disappear on standard maps (North Pole Neumayer Expedition comparison)',
+      'Web Mercator: The Same Routes Look Like Northern Detours — great-circle routes HKG–JFK, LHR–NRT, and ORD–FRA shown against the Mercator illusion',
+      'UK Bivariate Climate Map — temperature × precipitation encoded as a 3×3 color matrix, exposing the warm-dry southeast vs. cool-wet northwest gradient',
+      'New York City: Language and Immigration Demographics — English speakers vs. foreign-born population by census tract, highlighting linguistically diverse corridors'
+    ],
+    takeaway: 'These pieces share a conviction that how you show data is itself a claim about the world. Projection choice, color encoding, and annotation placement are not neutral.',
+    stack: ['R', 'ggplot2', 'sf', 'tmap', 'Python', 'Matplotlib', 'QGIS'],
+    links: [],
+    gallery: [
+      'assets/other graphs/1.png',
+      'assets/other graphs/2.png',
+      'assets/other graphs/3.png',
+      'assets/other graphs/4.png',
+      'assets/other graphs/5.png',
+      'assets/other graphs/6.png',
+      'assets/other graphs/7.png',
+      'assets/other graphs/8.png',
+      'assets/other graphs/9.png',
+    ]
   }
 };
 
@@ -702,6 +772,22 @@ function openModal(id, cardEl) {
     scrubber.addEventListener('input', () => { audio.currentTime = scrubber.value; });
   });
 
+  /* Gallery images (for data-graphs and similar) */
+  const existingGallery = document.getElementById('modal-gallery-section');
+  if (existingGallery) existingGallery.remove();
+
+  if (data.gallery && data.gallery.length) {
+    const gallerySection = document.createElement('div');
+    gallerySection.id = 'modal-gallery-section';
+    gallerySection.className = 'modal-gallery-section';
+    gallerySection.innerHTML = `
+      <div class="modal-gallery-label">All Works (${data.gallery.length})</div>
+      <div class="modal-gallery-grid">
+        ${data.gallery.map((src, i) => `<img src="${src}" alt="Visualization ${i+1}" loading="lazy" onclick="window._openLightbox('${src}')">`).join('')}
+      </div>`;
+    document.getElementById('modal-takeaway').insertAdjacentElement('afterend', gallerySection);
+  }
+
   const ghBtn = document.getElementById('modal-github');
   if (data.github) {
     ghBtn.href = data.github;
@@ -720,6 +806,23 @@ function closeModal() {
   modalOverlay.classList.remove('open');
   document.body.style.overflow = '';
 }
+
+/* ── Lightbox ── */
+(function () {
+  const lb = document.createElement('div');
+  lb.className = 'lightbox-overlay';
+  lb.innerHTML = '<img id="lightbox-img" src="" alt="">';
+  document.body.appendChild(lb);
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+})();
+
+window._openLightbox = function (src) {
+  const lb  = document.querySelector('.lightbox-overlay');
+  const img = document.getElementById('lightbox-img');
+  img.src = src;
+  lb.classList.add('open');
+};
 
 /* Podcast player controls (global so onclick= works) */
 window._togglePodcast = function () {
